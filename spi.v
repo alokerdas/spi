@@ -12,7 +12,7 @@ module spi (
   output ssn_out // master
 );
 
-  wire cntRst, int_clk, ss;
+  wire cntRst, ss;
   reg [7:0] datareg;
   reg [3:0] cntreg;
 
@@ -43,7 +43,7 @@ module spi (
   assign cntRst = reset | (cntreg[0] & cntreg[3]);
   always @(posedge clock_in or posedge cntRst) begin
     if (cntRst) begin
-      cntreg  <= 3'h0;
+      cntreg  <= 4'h0;
     end else if (ss || load) begin
       cntreg  <= cntreg + 1;
     end

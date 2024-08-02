@@ -1,15 +1,19 @@
 module spi (
+`ifdef USE_POWER_PINS
+  inout vccd1,
+  inout vssd1,
+`endif
   input reset,
   input clock_in,
-  input load,
-  input unload,
-  input [7:0] datain, // interface with other ip
-  output reg [7:0] dataout, // interface with other ip
-  output sclk, // master
-  input miso, //master
-  output mosi, // master
+  input load, // interface with other ip
+  input unload, // interface with other ip
+  input miso, // slave
   input ssn_in, // slave
-  output ssn_out // master
+  input [7:0] datain, // interface with other ip
+  output sclk, // master
+  output mosi, // master
+  output ssn_out, // master
+  output reg [7:0] dataout // interface with other ip
 );
 
   wire cntRst, ss;

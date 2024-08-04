@@ -37,8 +37,7 @@ module spi (
     end
   end
 
-//  always_latch begin // for yosys
-  always @(*) begin
+  always_latch begin
     if (unload) begin
       dataout = datareg;
     end
